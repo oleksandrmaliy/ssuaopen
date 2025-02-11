@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useId, useRef } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -7,7 +7,11 @@ const userValues = {
   email: '',
   password: '',
   cfmPassword: '',
+  image: null,
 };
+
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // Максимальний розмір фото 5MB (можна змінити)
+const SUPPORTED_IMAGE_FORMATS = ['image/jpeg', 'image/png', 'image/gif'];
 
 const userSchema = Yup.object().shape({
   nickname: Yup.string()
@@ -22,10 +26,22 @@ const userSchema = Yup.object().shape({
   cfmPassword: Yup.string()
     .oneOf([Yup.ref('password')], 'Паролі мають співпадати!')
     .required("Обов'язкове поле"),
+  image: Yup.mixed()
+    .required('Фото обов’язкове')
+    .test('is-valid-size', 'Файл завеликий (макс. 5MB)', (value) => {
+      return value && value.size <= MAX_IMAGE_SIZE;
+    })
+    .test(
+      'fileType',
+      'Непідтримуваний формат (дозволено JPEG, PNG, GIF)',
+      (value) => {
+        return value && SUPPORTED_IMAGE_FORMATS.includes(value.type);
+      },
+    ),
 });
 
 const ErrorToast = ({ children }) => {
-  return <h3>{children}</h3>;
+  return <h3 style={{ color: 'red' }}>{children}</h3>;
 };
 
 const Registration = ({ className }) => {
@@ -33,6 +49,9 @@ const Registration = ({ className }) => {
   const emailId = useId();
   const passwordId = useId();
   const cfmPasswordId = useId();
+  const imgId = useId();
+
+  const imageInputRef = useRef(null);
 
   const handleSubmit = (values, actions) => {
     console.log(values);
@@ -40,6 +59,10 @@ const Registration = ({ className }) => {
     console.log(cfmPassword);
     console.log(dataToSend);
     actions.resetForm();
+
+    if (imageInputRef.current) {
+      imageInputRef.current.value = ''; // очищаємо значення файлу
+    }
   };
 
   return (
@@ -50,48 +73,71 @@ const Registration = ({ className }) => {
         onSubmit={handleSubmit}
         validationSchema={userSchema}
       >
-        <Form>
-          <div>
-            <label htmlFor={nickId}>Псевдонім</label>
-            <Field
-              type="text"
-              name="nickname"
-              id={nickId}
-              placeholder="Псевдонім"
-            />
-            <ErrorMessage name="nickname" component={ErrorToast} />
-          </div>
+        {({ setFieldValue }) => (
+          <Form>
+            <div>
+              <label htmlFor={nickId}>Псевдонім</label>
+              <Field
+                type="text"
+                name="nickname"
+                id={nickId}
+                placeholder="Псевдонім"
+              />
+              <ErrorMessage name="nickname" component={ErrorToast} />
+            </div>
 
-          <div>
-            <label htmlFor={emailId}>Електронна пошта</label>
-            <Field type="email" name="email" id={emailId} placeholder="Емейл" />
-            <ErrorMessage name="email" component={ErrorToast} />
-          </div>
+            <div>
+              <label htmlFor={emailId}>Електронна пошта</label>
+              <Field
+                type="email"
+                name="email"
+                id={emailId}
+                placeholder="Емейл"
+              />
+              <ErrorMessage name="email" component={ErrorToast} />
+            </div>
 
-          <div>
-            <label htmlFor={passwordId}>Пароль</label>
-            <Field
-              type="password"
-              name="password"
-              id={passwordId}
-              placeholder="Пароль"
-            />
-            <ErrorMessage name="password" component={ErrorToast} />
-          </div>
+            <div>
+              <label htmlFor={passwordId}>Пароль</label>
+              <Field
+                type="password"
+                name="password"
+                id={passwordId}
+                placeholder="Пароль"
+              />
+              <ErrorMessage name="password" component={ErrorToast} />
+            </div>
 
-          <div>
-            <label htmlFor={cfmPasswordId}>Пароль</label>
-            <Field
-              type="password"
-              name="cfmPassword"
-              id={cfmPasswordId}
-              placeholder="Пароль"
-            />
-            <ErrorMessage name="cfmPassword" component={ErrorToast} />
-          </div>
+            <div>
+              <label htmlFor={cfmPasswordId}>Пароль</label>
+              <Field
+                type="password"
+                name="cfmPassword"
+                id={cfmPasswordId}
+                placeholder="Пароль"
+              />
+              <ErrorMessage name="cfmPassword" component={ErrorToast} />
+            </div>
 
-          <button type="submit">Зареєструватися</button>
-        </Form>
+            <div>
+              <label htmlFor={imgId}>Фото</label>
+              <input
+                ref={imageInputRef} // Прив'язуємо реф
+                id={imgId}
+                name="image"
+                type="file"
+                accept="image/*" // Для вибору зображень
+                onChange={(event) => {
+                  const file = event.currentTarget.files?.[0];
+                  setFieldValue('image', file);
+                }}
+              />
+              <ErrorMessage name="image" component={ErrorToast} />
+            </div>
+
+            <button type="submit">Зареєструватися</button>
+          </Form>
+        )}
       </Formik>
     </div>
   );

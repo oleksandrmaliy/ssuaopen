@@ -45,6 +45,7 @@ const Participation = ({ className }) => {
   const fileId = useId();
   const textAreaId = useId();
 
+ 
   const videoInputRef = useRef(null); // Створення рефу для input[type="file"]
 
   const handleSubmit = (values, actions) => {
@@ -80,6 +81,7 @@ const Participation = ({ className }) => {
               />
               <ErrorMessage name="week" component={ErrorToast} />
             </div>
+         
 
             <div>
               <label htmlFor={fileId}>Відеофайл</label>
