@@ -57,14 +57,14 @@ const Registration = ({ className }) => {
               type="text"
               name="nickname"
               id={nickId}
-              placeholder="nickname"
+              placeholder="Псевдонім"
             />
             <ErrorMessage name="nickname" component={ErrorToast} />
           </div>
 
           <div>
             <label htmlFor={emailId}>Електронна пошта</label>
-            <Field type="email" name="email" id={emailId} placeholder="email" />
+            <Field type="email" name="email" id={emailId} placeholder="Емейл" />
             <ErrorMessage name="email" component={ErrorToast} />
           </div>
 
@@ -74,7 +74,7 @@ const Registration = ({ className }) => {
               type="password"
               name="password"
               id={passwordId}
-              placeholder="password"
+              placeholder="Пароль"
             />
             <ErrorMessage name="password" component={ErrorToast} />
           </div>
@@ -85,12 +85,12 @@ const Registration = ({ className }) => {
               type="password"
               name="cfmPassword"
               id={cfmPasswordId}
-              placeholder="password"
+              placeholder="Пароль"
             />
             <ErrorMessage name="cfmPassword" component={ErrorToast} />
           </div>
 
-          <button type="submit">Submit</button>
+          <button type="submit">Зареєструватися</button>
         </Form>
       </Formik>
     </div>

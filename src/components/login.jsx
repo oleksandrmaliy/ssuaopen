@@ -39,7 +39,7 @@ const Login = ({ className }) => {
         <Form>
           <div>
             <label htmlFor={emailId}>Електронна пошта</label>
-            <Field type="email" name="email" id={emailId} placeholder="email" />
+            <Field type="email" name="email" id={emailId} placeholder="Емейл" />
             <ErrorMessage name="email" component={ErrorToast} />
           </div>
 
@@ -49,12 +49,12 @@ const Login = ({ className }) => {
               type="password"
               name="password"
               id={passwordId}
-              placeholder="password"
+              placeholder="Пароль"
             />
             <ErrorMessage name="password" component={ErrorToast} />
           </div>
 
-          <button type="submit">Submit</button>
+          <button type="submit">Увійти</button>
         </Form>
       </Formik>
     </div>

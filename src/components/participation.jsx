@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useId, useRef } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -8,37 +8,26 @@ const SUPPORTED_VIDEO_FORMATS = [
   'video/avi',
   'video/mkv',
   'video/quicktime',
-]; // MOV = quicktime
+];
 
 const userValues = {
   week: '',
-  file: '',
+  video: null,
   text: '',
 };
 
 const userSchema = Yup.object().shape({
   week: Yup.string().required('Оберіть тиждень'),
-  file: Yup.mixed()
+  video: Yup.mixed()
     .required('Відеофайл обов’язковий')
-    .test('is-valid-size', 'Max allowed size is 50MB', (value) => {
-      console.log(value);
-      console.log(value.name);
-      console.log(value[0].size);
-      value && value.size <= MAX_VIDEO_SIZE;
+    .test('is-valid-size', 'Файл завеликий (макс. 50MB)', (value) => {
+      return value && value.size <= MAX_VIDEO_SIZE;
     })
-
-    // .test('fileSize', 'Файл завеликий (макс. 50MB)', (value) => {
-    //   console.log(value);
-    //   console.log(value.type);
-    //   console.log(value.size);
-    //   return value instanceof File && value.size <= MAX_VIDEO_SIZE;
-    // })
     .test(
       'fileType',
       'Непідтримуваний формат (дозволено MP4, AVI, MKV, MOV)',
       (value) => {
-        if (!value || !(value instanceof File)) return true;
-        return SUPPORTED_VIDEO_FORMATS.includes(value.type);
+        return value && SUPPORTED_VIDEO_FORMATS.includes(value.type);
       },
     ),
   text: Yup.string()
@@ -48,7 +37,7 @@ const userSchema = Yup.object().shape({
 });
 
 const ErrorToast = ({ children }) => {
-  return <h3>{children}</h3>;
+  return <h3 style={{ color: 'red' }}>{children}</h3>;
 };
 
 const Participation = ({ className }) => {
@@ -56,54 +45,75 @@ const Participation = ({ className }) => {
   const fileId = useId();
   const textAreaId = useId();
 
+  const videoInputRef = useRef(null); // Створення рефу для input[type="file"]
+
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    console.log('Форма відправлена:', values);
+    console.log(values.video);
+    console.log(values.video.size);
+    console.log(values.video.type);
 
     actions.resetForm();
+
+    if (videoInputRef.current) {
+      videoInputRef.current.value = ''; // очищаємо значення файлу
+    }
   };
 
   return (
     <div className={className}>
-      <h3>Участь у грі</h3>
+      <h3>Участь у чемпіонаті</h3>
       <Formik
         initialValues={userValues}
         onSubmit={handleSubmit}
         validationSchema={userSchema}
       >
-        <Form>
-          <div>
-            <label htmlFor={weekId}>Тиждень</label>
-            <Field type="week" name="week" id={weekId} placeholder="week" />
-            <ErrorMessage name="week" component={ErrorToast} />
-          </div>
+        {({ setFieldValue }) => (
+          <Form>
+            <div>
+              <label htmlFor={weekId}>Тиждень</label>
+              <Field
+                type="week"
+                name="week"
+                id={weekId}
+                placeholder="Тиждень"
+              />
+              <ErrorMessage name="week" component={ErrorToast} />
+            </div>
 
-          <div>
-            <label htmlFor={fileId}>Відеофайл</label>
-            <Field
-              type="file"
-              accept="video/*"
-              name="file"
-              id={fileId}
-              placeholder="videofile"
-            />
-            <ErrorMessage name="file" component={ErrorToast} />
-          </div>
+            <div>
+              <label htmlFor={fileId}>Відеофайл</label>
+              <input
+                ref={videoInputRef} // Прив'язуємо реф
+                id={fileId}
+                name="video"
+                type="file"
+                accept="video/*"
+                onChange={(event) => {
+                  const file = event.currentTarget.files?.[0];
+                  setFieldValue('video', file);
+                }}
+              />
+              <ErrorMessage name="video" component={ErrorToast} />
+            </div>
 
-          <div>
-            <label htmlFor={textAreaId}>Про себе</label>
-            <Field
-              as="textarea"
-              rows="5"
-              wrap="hard"
-              name="text"
-              id={textAreaId}
-              placeholder="text"
-            />
-            <ErrorMessage name="text" component={ErrorToast} />
-          </div>
+            <div>
+              <label htmlFor={textAreaId}>Про себе</label>
+              <Field
+                as="textarea"
+                rows="5"
+                cols="50"
+                wrap="hard"
+                name="text"
+                id={textAreaId}
+                placeholder="Про себе"
+              />
+              <ErrorMessage name="text" component={ErrorToast} />
+            </div>
 
-          <button type="submit">Submit</button>
-        </Form>
+            <button type="submit">Надіслати</button>
+          </Form>
+        )}
       </Formik>
     </div>
   );
