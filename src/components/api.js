@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-axios.defaults.baseURL =
-  'https://dummyjson.com/products?limit=0&skip=0&select=title,price,thumbnail,';
-// axios.defaults.baseURL = 'https://dummyjson.com/products';
+// axios.defaults.baseURL = 'https://dummyjson.com/test';
+axios.defaults.baseURL = 'https://dummyjson.com/products';
 
 // {
 //     "albumId": 1,
@@ -17,5 +16,5 @@ axios.defaults.baseURL =
 export const fetchData = async () => {
   const response = await axios.get(`/`);
   console.log(response.data.products);
-  return response;
+  return response.data.products;
 };
