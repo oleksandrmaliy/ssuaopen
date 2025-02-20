@@ -8,15 +8,15 @@ export default function Sidebar() {
     <div className="flex h-screen">
       {/* Кнопка відкриття меню */}
       <button
-        className="fixed top-4 left-4 bg-gray-800 text-white p-2 rounded-md z-5"
+        className="fixed top-40 left-4 bg-gray-800 text-white p-2 rounded-md z-5"
         onClick={() => setIsOpen(true)}
       >
         <FaBars size={24} />
       </button>
       {/* Бокове меню */}
       <div
-        className={`fixed left-0 top-4 h-fit bg-gray-800 text-white w-64 p-5 rounded-xl transform transition-transform duration-300 z-1050 ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+        className={`fixed left-0 top-40 h-fit bg-gray-800 text-white w-64 p-5 rounded-xl transform transition-transform duration-300 z-1050 ${
+          isOpen ? 'translate-x-4' : '-translate-x-full'
         }`}
       >
         <button
