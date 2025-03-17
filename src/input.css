@@ -1,17 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@config "../tailwind.config.js";
 
 body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  background-image: url('/quailbg.svg'); /* Використання SVG як фону */
-  background-repeat: repeat; /* Повторення зображення */
-  background-size: 20%; /* Зміна розміру кожного повторення */
-  background-position: 0 0; /* Початок з верхнього лівого кута */
 }
+
+/* background-image: url('/quailbg.svg'); 
+  background-repeat: repeat; 
+  background-size: 20%; 
+  background-position: 0 0;  */
 
 h1,
 h2,

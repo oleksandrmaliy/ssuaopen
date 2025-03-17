@@ -35,12 +35,12 @@ import Participation from '../components/participation';
 
 const Forth = () => {
   return (
-    <>
+    <div className="bg-red-200 border-4 border-red-500">
       <Title>Registration page</Title>
       <Registration className="mb-4" />
       <Login className="mb-4" />
       <Participation className="mb-4" />
-    </>
+    </div>
   );
 };
 
