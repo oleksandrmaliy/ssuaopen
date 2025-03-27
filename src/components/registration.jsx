@@ -11,7 +11,12 @@ const userValues = {
 };
 
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // Максимальний розмір фото 5MB (можна змінити)
-const SUPPORTED_IMAGE_FORMATS = ['image/jpeg', 'image/png', 'image/gif'];
+const SUPPORTED_IMAGE_FORMATS = [
+  'image/jpeg',
+  'image/png',
+  'image/gif',
+  'image/bmp',
+];
 
 const userSchema = Yup.object().shape({
   nickname: Yup.string()
@@ -33,7 +38,7 @@ const userSchema = Yup.object().shape({
     })
     .test(
       'fileType',
-      'Непідтримуваний формат (дозволено JPEG, PNG, GIF)',
+      'Непідтримуваний формат (дозволено JPEG, PNG, GIF, BMP)',
       (value) => {
         return value && SUPPORTED_IMAGE_FORMATS.includes(value.type);
       },
