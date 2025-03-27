@@ -7,7 +7,9 @@ const ReduxBtnTwo = () => {
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
 
-  const secondvalue = useSelector((state) => state.second.two);
+  const stateTwo = (state) => state.first.two;
+
+  const secondvalue = useSelector(stateTwo);
 
   const add = () => {
     dispatch(addTwo(value));
