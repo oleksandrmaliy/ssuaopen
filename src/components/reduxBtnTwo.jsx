@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTwo, subTwo } from '../redux/secondSlice';
+import { addTwo, subTwo, selectStateTwo } from '../redux/secondSlice';
 import { useSelector } from 'react-redux';
 
 const ReduxBtnTwo = () => {
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
 
-  const stateTwo = (state) => state.first.two;
-
-  const secondvalue = useSelector(stateTwo);
+  const secondvalue = useSelector(selectStateTwo);
 
   const add = () => {
     dispatch(addTwo(value));
