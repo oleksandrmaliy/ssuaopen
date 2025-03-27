@@ -17,5 +17,6 @@ const slice = createSlice({
   },
 });
 
+export const selectStateOne = (state) => state.first.one;
 export const { addOne, subOne } = slice.actions;
 export default slice.reducer;
