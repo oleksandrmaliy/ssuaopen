@@ -8,7 +8,6 @@ const ReduxBtn = () => {
   const dispatch = useDispatch();
 
   const firstvalue = useSelector(selectStateOne);
-  console.log(value);
 
   const add = () => {
     dispatch(addOne(value));
