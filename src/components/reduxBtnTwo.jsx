@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTwo, subTwo, selectStateTwo } from '../redux/secondSlice';
 import { useSelector } from 'react-redux';
+import { fetchSurfers } from '../redux/operations';
 
 const ReduxBtnTwo = () => {
   const [value, setValue] = useState(0);
@@ -16,6 +17,8 @@ const ReduxBtnTwo = () => {
   const sub = () => {
     dispatch(subTwo(value));
   };
+
+  fetchSurfers();
 
   return (
     <div className="mt-10 flex flex-row gap-8">
