@@ -1,37 +1,37 @@
-import { useState, useEffect } from 'react';
-import { fetchData } from '../components/api.js';
+// import { useState, useEffect } from 'react';
+// import { fetchData } from '../components/api.js';
 import Title from '../components/title.jsx';
 
 const First = () => {
-  const [fotos, setFotos] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  // const [fotos, setFotos] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(false);
 
-  useEffect(() => {
-    async function getFoto() {
-      try {
-        setLoading(true);
-        setError(null);
-        const array = await fetchData();
+  // useEffect(() => {
+  //   async function getFoto() {
+  //     try {
+  //       setLoading(true);
+  //       setError(null);
+  //       const array = await fetchData();
 
-        setFotos(array);
-      } catch (error) {
-        setError(true);
-        alert(error.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    getFoto();
-  }, []);
+  //       setFotos(array);
+  //     } catch (error) {
+  //       setError(true);
+  //       alert(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   getFoto();
+  // }, []);
 
-  console.log(fotos);
+  // console.log(fotos);
   return (
     <>
       <Title>First page</Title>
-      {error && <p className="mb-4 text-red-500 font-bold">{error.message}</p>}
+      {/*  {error && <p className="mb-4 text-red-500 font-bold">{error.message}</p>}
       {loading && <p className="mb-4 text-red-500 font-bold"> Loading...</p>}
-      {/* <p>{fotos.length > 0 ? fotos[0].id : 'Title not found'}</p> */}
+       <p>{fotos.length > 0 ? fotos[0].id : 'Title not found'}</p> 
       <ul className="p-4 bg-red-300 rounded-xl">
         {fotos.map(
           ({ id, title, brand, category, description, thumbnail, images }) => (
@@ -53,7 +53,7 @@ const First = () => {
             </li>
           ),
         )}
-      </ul>
+      </ul>*/}
     </>
   );
 };
