@@ -1,7 +1,7 @@
 // import { useState, useEffect } from 'react';
 // import { fetchData } from '../components/api.js';
 import Title from '../components/title.jsx';
-import Surfers from '../components/surfers.jsx';
+// import Surfers from '../components/surfers.jsx';
 
 const First = () => {
   // const [fotos, setFotos] = useState([]);
@@ -55,7 +55,7 @@ const First = () => {
           ),
         )}
       </ul>*/}
-      <Surfers />
+      {/* <Surfers /> */}
     </>
   );
 };
