@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchSurfers } from '../redux/operations';
 import { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -11,23 +12,18 @@ import { useEffect } from 'react';
 // import { useLocation } from 'react-router-dom';
 
 const Surfers = () => {
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const surfers = await fetchSurfers();
-        console.log(surfers);
-      } catch (error) {
-        console.error('Error fetching surfers:', error);
-      }
-    };
+  const dispatch = useDispatch();
+  const { players, isLoading, error } = useSelector((state) => state.surfers);
 
-    fetchData();
-  }, []);
+  useEffect(() => {
+    dispatch(fetchSurfers());
+  }, [dispatch]);
 
   return (
-    <div className="border-4 border-red-500 bg-red-200">
-      <h2 className="mb-4 text-2xl font-bold">Surfers Page</h2>
-      {/* Add your surfer components or data display here */}
+    <div>
+      {isLoading && <p>Loading tasks...</p>}
+      {error && <p>{error}</p>}
+      <p>{players.length > 0 && JSON.stringify(players, null, 2)}</p>
     </div>
   );
 };
