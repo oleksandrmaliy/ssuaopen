@@ -1,7 +1,7 @@
 import Title from '../components/title.jsx';
 
 const NotFound = () => {
-  return <Title>Not Found Page!</Title>;
+  return <Title>Such Page was Not Found !</Title>;
 };
 
 export default NotFound;
