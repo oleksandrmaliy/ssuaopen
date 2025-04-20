@@ -23,7 +23,7 @@ const Surfers = () => {
     <div className="my-10">
       {isLoading && <p>Loading tasks...</p>}
       {error && <p>{error}</p>}
-      <p>{players.length > 0 && JSON.stringify(players, null, 2)}</p>
+      <p>{players.length > 0 && JSON.stringify(players)}</p>
     </div>
   );
 };
