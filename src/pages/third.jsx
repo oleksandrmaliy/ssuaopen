@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
-export default function Sidebar() {
+const Third = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="flex h-screen">
       {/* Кнопка відкриття меню */}
       <button
-        className="fixed top-40 left-4 bg-gray-800 text-white p-2 rounded-md z-5"
+        className="fixed top-40 left-4 z-5 rounded-md bg-gray-800 p-2 text-white"
         onClick={() => setIsOpen(true)}
       >
         <FaBars size={24} />
       </button>
       {/* Бокове меню */}
       <div
-        className={`fixed left-0 top-40 h-fit bg-gray-800 text-white w-64 p-5 rounded-xl transform transition-transform duration-300 z-1050 ${
+        className={`fixed top-40 left-0 z-1050 h-fit w-64 transform rounded-xl bg-gray-800 p-5 text-white transition-transform duration-300 ${
           isOpen ? 'translate-x-4' : '-translate-x-full'
         }`}
       >
@@ -46,4 +46,6 @@ export default function Sidebar() {
       </div>
     </div>
   );
-}
+};
+
+export default Third;
