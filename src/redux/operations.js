@@ -8,7 +8,7 @@ export const fetchSurfers = () => async (dispatch) => {
   try {
     dispatch(fetchInProgress());
     const response = await axios.get(`/surfers`);
-    console.log(response.data);
+    // console.log(response.data);
     dispatch(fetchSuccess(response.data));
   } catch (error) {
     dispatch(fetchError(error.message));

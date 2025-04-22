@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const surfersSlice = createSlice({
   name: 'surfers',
+
   initialState: {
     players: [],
     isLoading: false,
     error: null,
   },
+
   reducers: {
     fetchInProgress(state) {
       state.isLoading = true;
