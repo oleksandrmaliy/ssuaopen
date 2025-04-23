@@ -28,14 +28,14 @@ const Surfers = () => {
     <div>
       {isLoading && <p>Loading tasks...</p>}
       {error && <p>{error}</p>}
-      <p>{players.length > 0 && JSON.stringify(players)}</p>
+      {/* <p>{players.length > 0 && JSON.stringify(players)}</p> */}
       {players.length > 0 && (
         <div>
           <ul>
             {players.map(({ id, name, createdAt, avatar, score, week }) => (
               <li key={id} className="mb-10">
                 <h4>Player: {name}</h4>
-                <img src={avatar} alt="player" width="300" height="auto" />
+                <img src={avatar} alt="player" width="100" height="auto" />
                 <p>Score: {score}</p>
                 <p>Week: {week}</p>
                 <p>Date: {createdAt}</p>
