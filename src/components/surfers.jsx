@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSurfers } from '../redux/operations';
 import { useEffect } from 'react';
+
+import fetchSurfers from '../redux/operations';
+
 // import { useDispatch, useSelector } from 'react-redux';
 // import { setSurfers } from '../redux/surfersSlice';
 // import Title from '../components/title.jsx';
@@ -20,10 +22,16 @@ const Surfers = () => {
   }, [dispatch]);
 
   return (
-    <div className="my-10">
+    <div>
       {isLoading && <p>Loading tasks...</p>}
       {error && <p>{error}</p>}
-      <p>{players.length > 0 && JSON.stringify(players)}</p>
+      {/* <p>{players.length > 0 && JSON.stringify(players)}</p> */}
+      {players.length > 0 && (
+        <div>
+          <ol>players.map()</ol>
+          <p> ok</p>
+        </div>
+      )}
     </div>
   );
 };

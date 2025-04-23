@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import fetchSurfers from './operations';
 
 const surfersSlice = createSlice({
   name: 'surfers',
@@ -9,23 +10,39 @@ const surfersSlice = createSlice({
     error: null,
   },
 
-  reducers: {
-    fetchInProgress(state) {
-      state.isLoading = true;
-    },
-    fetchSuccess(state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.players = action.payload;
-    },
-    fetchError(state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+  // reducers: {
+  //   fetchInProgress(state) {
+  //     state.isLoading = true;
+  //   },
+  //   fetchSuccess(state, action) {
+  //     state.isLoading = false;
+  //     state.error = null;
+  //     state.players = action.payload;
+  //   },
+  //   fetchError(state, action) {
+  //     state.isLoading = false;
+  //     state.error = action.payload;
+  //   },
+  // },
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchSurfers.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchSurfers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.players = action.payload;
+      })
+      .addCase(fetchSurfers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   },
 });
 
-export const { fetchInProgress, fetchSuccess, fetchError } =
-  surfersSlice.actions;
+// export const { fetchInProgress, fetchSuccess, fetchError } =
+//   surfersSlice.actions;
 export const selectSurfers = (state) => state.surfers.players;
 export default surfersSlice.reducer;
