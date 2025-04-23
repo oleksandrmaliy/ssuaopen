@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import fetchSurfers from '../redux/operations';
+import { fetchSurfers, deleteSurfer } from '../redux/operations';
 
 // import video1 from '../assets/video1.MOV';
 
@@ -18,11 +18,13 @@ import fetchSurfers from '../redux/operations';
 const Surfers = () => {
   const dispatch = useDispatch();
   const { players, isLoading, error } = useSelector((state) => state.surfers);
-  // const { id, name, createdAt, avatar, score, week, file } = players;
+  // const { player.id } = players;
 
   useEffect(() => {
     dispatch(fetchSurfers());
   }, [dispatch]);
+
+  // const handleDelete = () => dispatch(deleteSurfer(player.id));
 
   return (
     <div>
@@ -32,22 +34,33 @@ const Surfers = () => {
       {players.length > 0 && (
         <div>
           <ul>
-            {players.map(({ id, name, createdAt, avatar, score, week }) => (
-              <li key={id} className="mb-10">
-                <h4>Player: {name}</h4>
-                <img src={avatar} alt="player" width="100" height="auto" />
-                <p>Score: {score}</p>
-                <p>Week: {week}</p>
-                <p>Date: {createdAt}</p>
+            {players.map((player) => (
+              <li key={player.id} className="mb-10">
+                <h4>Player: {player.name}</h4>
+                <img
+                  src={player.avatar}
+                  alt="player"
+                  width="120"
+                  height="auto"
+                />
+                <p>Score: {player.score}</p>
+                <p>Week: {player.week}</p>
+                <p>Date: {player.createdAt}</p>
                 <p>
                   Video:
                   {
-                    <video controls width="100">
-                      <source src="/public/video2.mp4" type="video/mp4" />
+                    <video controls width="120">
+                      <source src="/video2.mp4" type="video/mp4" />
                       Ваш браузер не підтримує відео.
                     </video>
                   }
                 </p>
+                <button
+                  className="cursor-pointer"
+                  onClick={() => dispatch(deleteSurfer(player.id))}
+                >
+                  Delete Player
+                </button>
               </li>
             ))}
           </ul>

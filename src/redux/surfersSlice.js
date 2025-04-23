@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import fetchSurfers from './operations';
+import { fetchSurfers, deleteSurfer } from './operations';
 
 const surfersSlice = createSlice({
   name: 'surfers',
@@ -36,6 +36,20 @@ const surfersSlice = createSlice({
         state.players = action.payload;
       })
       .addCase(fetchSurfers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteSurfer.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteSurfer.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.players = state.players.filter(
+          (players) => players.id !== action.payload.id,
+        );
+      })
+      .addCase(deleteSurfer.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

@@ -19,7 +19,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://66b388ab7fba54a5b7ed51b4.mockapi.io/';
 
-const fetchSurfers = createAsyncThunk(
+export const fetchSurfers = createAsyncThunk(
   'surfers/fetchAll',
 
   async (_, thunkAPI) => {
@@ -40,4 +40,17 @@ const fetchSurfers = createAsyncThunk(
   // }
 );
 
-export default fetchSurfers;
+// export default fetchSurfers;
+
+export const deleteSurfer = createAsyncThunk(
+  'surfers/deletePlayer',
+  async (playerId, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/surfers/${playerId}`);
+      console.log(playerId);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
