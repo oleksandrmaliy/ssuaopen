@@ -50,10 +50,8 @@ const Participation = ({ className }) => {
   // const videoInputRef = useRef(null); // Створення рефу для input[type="file"]
 
   const handleSubmit = (values, actions) => {
-    console.log('Форма відправлена:', values);
-    // console.log(values.video);
-    // console.log(values.video.size);
-    // console.log(values.video.type);
+    console.log('Форма відправлена - values:', values);
+    console.log('Форма відправлена - actions:', actions);
 
     actions.resetForm();
 
