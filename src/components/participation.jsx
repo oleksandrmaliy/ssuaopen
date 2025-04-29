@@ -99,23 +99,13 @@ const Participation = ({ className }) => {
 
           <div>
             <label htmlFor={weekId}>Тиждень</label>
-            <Field
-              type="week"
-              name="week"
-              id={weekId}
-              // placeholder="Week number"
-            />
+            <Field type="week" name="week" id={weekId} />
             <ErrorMessage name="week" />
           </div>
 
           <div>
             <label htmlFor={dateId}>Дата участі</label>
-            <Field
-              type="date"
-              name="date"
-              id={dateId}
-              // placeholder="dd-mm-yyyy"
-            />
+            <Field type="date" name="date" id={dateId} />
             <ErrorMessage name="date" />
           </div>
 
