@@ -1,7 +1,7 @@
 // import { useState } from 'react';
 // import { FaBars, FaTimes } from 'react-icons/fa';
 import Title from '../components/title.jsx';
-import Menu from '../components/menu';
+// import Menu from '../components/menu';
 
 const Third = () => {
   // const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +9,7 @@ const Third = () => {
   return (
     <>
       <Title>Third page</Title>
-      <Menu />
+      {/* <Menu /> */}
     </>
 
     // <div className="flex h-screen">
