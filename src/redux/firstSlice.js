@@ -1,22 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+// import { createSlice } from '@reduxjs/toolkit';
 
-const slice = createSlice({
-  name: 'first',
+// const slice = createSlice({
+//   name: 'first',
 
-  initialState: {
-    one: 0,
-  },
+//   initialState: {
+//     one: 0,
+//   },
 
-  reducers: {
-    addOne: (state, action) => {
-      state.one += action.payload;
-    },
-    subOne: (state, action) => {
-      state.one -= action.payload;
-    },
-  },
-});
+//   reducers: {
+//     addOne: (state, action) => {
+//       state.one += action.payload;
+//     },
+//     subOne: (state, action) => {
+//       state.one -= action.payload;
+//     },
+//   },
+// });
 
-export const selectStateOne = (state) => state.first.one;
-export const { addOne, subOne } = slice.actions;
-export default slice.reducer;
+// export const selectStateOne = (state) => state.first.one;
+// export const { addOne, subOne } = slice.actions;
+// export default slice.reducer;
