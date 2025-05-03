@@ -54,3 +54,16 @@ export const deleteSurfer = createAsyncThunk(
     }
   },
 );
+
+export const postSurfer = createAsyncThunk(
+  'surfers/postPlayer',
+
+  async (player, thunkAPI) => {
+    try {
+      const response = await axios.post('/surfers', player);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);

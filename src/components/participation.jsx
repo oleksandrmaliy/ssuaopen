@@ -1,5 +1,9 @@
 import { useId } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+
+import { postSurfer } from '../redux/operations';
+import { useDispatch } from 'react-redux';
+
 // import * as Yup from 'yup';
 
 // const MAX_VIDEO_SIZE = 52428800; // 50MB
@@ -40,6 +44,8 @@ const userValues = {
 // });
 
 const Participation = ({ className }) => {
+  const dispatch = useDispatch();
+
   const nameId = useId();
   const avatarId = useId();
   const scoreId = useId();
@@ -52,6 +58,7 @@ const Participation = ({ className }) => {
   const handleSubmit = (values, actions) => {
     console.log('Форма відправлена - values:', values);
     console.log('Форма відправлена - actions:', actions);
+    dispatch(postSurfer(values));
 
     actions.resetForm();
 
