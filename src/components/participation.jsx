@@ -16,11 +16,11 @@ import { useDispatch } from 'react-redux';
 
 const userValues = {
   name: '',
-  avatar: null,
+  avatar: '',
   score: '',
   week: '',
   date: '',
-  file: null,
+  file: '',
 };
 
 // const userSchema = Yup.object().shape({
@@ -43,7 +43,7 @@ const userValues = {
 //     .required("Обов'язкове поле"),
 // });
 
-const Participation = ({ className }) => {
+const Participation = () => {
   const dispatch = useDispatch();
 
   const nameId = useId();
@@ -68,7 +68,7 @@ const Participation = ({ className }) => {
   };
 
   return (
-    <div className={className}>
+    <div className="">
       <h3>Участь у чемпіонаті</h3>
       <Formik
         initialValues={userValues}
