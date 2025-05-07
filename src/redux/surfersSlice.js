@@ -70,5 +70,6 @@ const surfersSlice = createSlice({
 
 // export const { fetchInProgress, fetchSuccess, fetchError } =
 //   surfersSlice.actions;
+
 export const selectSurfers = (state) => state.surfers.players;
 export default surfersSlice.reducer;
