@@ -6,7 +6,6 @@ const Second = () => {
   return (
     <div>
       <Title>Second page</Title>
-
       <Participation />
     </div>
   );

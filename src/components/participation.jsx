@@ -4,8 +4,6 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { postSurfer } from '../redux/operations';
 import { useDispatch } from 'react-redux';
 
-// import * as Yup from 'yup';
-
 // const MAX_VIDEO_SIZE = 52428800; // 50MB
 // const SUPPORTED_VIDEO_FORMATS = [
 //   'video/mp4',
@@ -13,15 +11,6 @@ import { useDispatch } from 'react-redux';
 //   'video/mkv',
 //   'video/quicktime',
 // ];
-
-const userValues = {
-  name: '',
-  avatar: '',
-  score: '',
-  week: '',
-  date: '',
-  file: '',
-};
 
 // const userSchema = Yup.object().shape({
 //   week: Yup.string().required('Оберіть тиждень'),
@@ -43,6 +32,25 @@ const userValues = {
 //     .required("Обов'язкове поле"),
 // });
 
+// const videoInputRef = useRef(null); // Створення рефу для input[type="file"]
+
+// if (videoInputRef.current) {
+//   videoInputRef.current.value = ''; // очищаємо значення файлу
+// }
+
+// validationSchema={userSchema}
+
+// import * as Yup from 'yup';
+
+const userValues = {
+  name: '',
+  avatar: '',
+  score: '',
+  week: '',
+  date: '',
+  file: '',
+};
+
 const Participation = () => {
   const dispatch = useDispatch();
 
@@ -53,28 +61,18 @@ const Participation = () => {
   const dateId = useId();
   const fileId = useId();
 
-  // const videoInputRef = useRef(null); // Створення рефу для input[type="file"]
-
   const handleSubmit = (values, actions) => {
     console.log('Форма відправлена - values:', values);
     console.log('Форма відправлена - actions:', actions);
     dispatch(postSurfer(values));
 
     actions.resetForm();
-
-    // if (videoInputRef.current) {
-    //   videoInputRef.current.value = ''; // очищаємо значення файлу
-    // }
   };
 
   return (
     <div className="">
       <h3>Участь у чемпіонаті</h3>
-      <Formik
-        initialValues={userValues}
-        onSubmit={handleSubmit}
-        // validationSchema={userSchema}
-      >
+      <Formik initialValues={userValues} onSubmit={handleSubmit}>
         <Form>
           <div>
             <label htmlFor={nameId}>Ім&apos;я</label>
