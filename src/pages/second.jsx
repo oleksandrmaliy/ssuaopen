@@ -1,5 +1,4 @@
 import Title from '../components/title.jsx';
-
 import Participation from '../components/participation.jsx';
 
 const Second = () => {
