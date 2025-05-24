@@ -1,8 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { deleteSurfer } from '../redux/operations';
 
-// const { id, name, avatar } = player;
-
 const Player = ({ player }) => {
   const dispatch = useDispatch();
 
