@@ -10,7 +10,7 @@ const userValues = {
   image: null,
 };
 
-const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // Максимальний розмір фото 5MB (можна змінити)
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 const SUPPORTED_IMAGE_FORMATS = [
   'image/jpeg',
   'image/png',
@@ -66,7 +66,7 @@ const Registration = ({ className }) => {
     actions.resetForm();
 
     if (imageInputRef.current) {
-      imageInputRef.current.value = ''; // очищаємо значення файлу
+      imageInputRef.current.value = '';
     }
   };
 
@@ -127,11 +127,11 @@ const Registration = ({ className }) => {
             <div>
               <label htmlFor={imgId}>Фото</label>
               <input
-                ref={imageInputRef} // Прив'язуємо реф
+                ref={imageInputRef}
                 id={imgId}
                 name="image"
                 type="file"
-                accept="image/*" // Для вибору зображень
+                accept="image/*"
                 onChange={(event) => {
                   const file = event.currentTarget.files?.[0];
                   setFieldValue('image', file);
