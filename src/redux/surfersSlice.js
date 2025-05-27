@@ -25,6 +25,9 @@ const surfersSlice = createSlice({
   //   },
   // },
 
+  // export const { fetchInProgress, fetchSuccess, fetchError } =
+  //   surfersSlice.actions;
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchSurfers.pending, (state) => {
@@ -67,9 +70,6 @@ const surfersSlice = createSlice({
       });
   },
 });
-
-// export const { fetchInProgress, fetchSuccess, fetchError } =
-//   surfersSlice.actions;
 
 export const selectSurfers = (state) => state.surfers.players;
 export default surfersSlice.reducer;
