@@ -3,6 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://66b388ab7fba54a5b7ed51b4.mockapi.io/';
 
+// get all Players
+
 export const fetchSurfers = createAsyncThunk(
   'surfers/fetchSurfers',
 
@@ -16,6 +18,8 @@ export const fetchSurfers = createAsyncThunk(
   },
 );
 
+// add Player
+
 export const postSurfer = createAsyncThunk(
   'surfers/postSurfer',
 
@@ -28,6 +32,8 @@ export const postSurfer = createAsyncThunk(
     }
   },
 );
+
+// dekete Player
 
 export const deleteSurfer = createAsyncThunk(
   'surfers/deleteSurfer',
