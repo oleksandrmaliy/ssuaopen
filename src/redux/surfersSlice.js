@@ -1,6 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchSurfers, postSurfer, deleteSurfer } from './operations';
 
+//  reducers: {
+//     fetchInProgress(state) {
+//       state.isLoading = true;
+//     },
+//     fetchSuccess(state, action) {
+//       state.isLoading = false;
+//       state.error = null;
+//       state.players = action.payload;
+//     },
+//     fetchError(state, action) {
+//       state.isLoading = false;
+//       state.error = action.payload;
+//     },
+//   },
+
+//   export const { fetchInProgress, fetchSuccess, fetchError } =
+//     surfersSlice.actions;
+
 const surfersSlice = createSlice({
   name: 'surfers',
 
@@ -9,24 +27,6 @@ const surfersSlice = createSlice({
     isLoading: false,
     error: null,
   },
-
-  // reducers: {
-  //   fetchInProgress(state) {
-  //     state.isLoading = true;
-  //   },
-  //   fetchSuccess(state, action) {
-  //     state.isLoading = false;
-  //     state.error = null;
-  //     state.players = action.payload;
-  //   },
-  //   fetchError(state, action) {
-  //     state.isLoading = false;
-  //     state.error = action.payload;
-  //   },
-  // },
-
-  // export const { fetchInProgress, fetchSuccess, fetchError } =
-  //   surfersSlice.actions;
 
   extraReducers: (builder) => {
     builder
