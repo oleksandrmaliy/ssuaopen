@@ -1,3 +1,5 @@
+// page with registration ops
+
 import Title from '../components/title.jsx';
 import Registration from '../components/registration';
 import Login from '../components/login';
